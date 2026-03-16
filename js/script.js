@@ -197,6 +197,173 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// ===== QR CODE INTERACTIONS - ADDED FOR QR CODE GENERATOR =====
+
+// QR Code hover effect enhancement
+document.querySelectorAll('.qr-container').forEach(container => {
+    container.addEventListener('mouseenter', () => {
+        const qrImage = container.querySelector('.project-qr');
+        const qrLabel = container.querySelector('.qr-label');
+        
+        if (qrImage) {
+            qrImage.style.transform = 'scale(1.1) rotate(2deg)';
+            qrImage.style.transition = 'transform 0.4s ease';
+        }
+        
+        if (qrLabel) {
+            qrLabel.style.backgroundColor = 'var(--primary-color)';
+            qrLabel.style.color = 'white';
+            qrLabel.style.transition = 'all 0.3s ease';
+        }
+    });
+    
+    container.addEventListener('mouseleave', () => {
+        const qrImage = container.querySelector('.project-qr');
+        const qrLabel = container.querySelector('.qr-label');
+        
+        if (qrImage) {
+            qrImage.style.transform = 'scale(1) rotate(0)';
+        }
+        
+        if (qrLabel) {
+            qrLabel.style.backgroundColor = 'white';
+            qrLabel.style.color = '#333';
+        }
+    });
+});
+
+// QR Code click to enlarge
+document.querySelectorAll('.project-qr').forEach(qr => {
+    qr.addEventListener('click', function(e) {
+        e.stopPropagation();
+        
+        // Create modal for enlarged QR
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            cursor: pointer;
+            animation: fadeIn 0.3s ease;
+        `;
+        
+        const enlargedImg = document.createElement('img');
+        enlargedImg.src = this.src;
+        enlargedImg.alt = "Enlarged QR Code";
+        enlargedImg.style.cssText = `
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255,255,255,0.2);
+            animation: scaleIn 0.3s ease;
+        `;
+        
+        const closeBtn = document.createElement('div');
+        closeBtn.innerHTML = '×';
+        closeBtn.style.cssText = `
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        `;
+        
+        const scanText = document.createElement('div');
+        scanText.innerHTML = '📱 Scan with your phone camera';
+        scanText.style.cssText = `
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 18px;
+            background: rgba(74, 108, 247, 0.8);
+            padding: 10px 20px;
+            border-radius: 30px;
+        `;
+        
+        modal.appendChild(enlargedImg);
+        modal.appendChild(closeBtn);
+        modal.appendChild(scanText);
+        document.body.appendChild(modal);
+        
+        // Close modal when clicking
+        modal.addEventListener('click', () => {
+            modal.remove();
+        });
+        
+        // Prevent closing when clicking on image
+        enlargedImg.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    });
+});
+
+// Add animation for enlarged QR
+const qrAnimationStyle = document.createElement('style');
+qrAnimationStyle.textContent = `
+    @keyframes scaleIn {
+        from {
+            transform: scale(0.5);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+`;
+document.head.appendChild(qrAnimationStyle);
+
+// Track QR code scans (clicks)
+document.querySelectorAll('.qr-container a[href]').forEach(link => {
+    link.addEventListener('click', function() {
+        console.log('QR Code link clicked - redirecting to app');
+        // You could add analytics tracking here
+    });
+});
+
+// Add tooltip for QR code
+document.querySelectorAll('.qr-container').forEach(container => {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'qr-tooltip';
+    tooltip.textContent = 'Click QR to enlarge • Long press to save';
+    tooltip.style.cssText = `
+        position: absolute;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 100;
+    `;
+    
+    container.style.position = 'relative';
+    container.appendChild(tooltip);
+    
+    container.addEventListener('mouseenter', () => {
+        tooltip.style.opacity = '1';
+    });
+    
+    container.addEventListener('mouseleave', () => {
+        tooltip.style.opacity = '0';
+    });
+});
+
+// ===== END OF QR CODE INTERACTIONS =====
+
 // Project card hover effects
 document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mouseenter', () => {
@@ -292,3 +459,30 @@ const createScrollTopButton = () => {
 
 // Initialize scroll to top button
 createScrollTopButton();
+
+// Add smooth scroll for QR code links
+document.querySelectorAll('a[href^="http"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+        // Don't prevent default - let it open normally
+        console.log('External link clicked:', link.href);
+    });
+});
+
+// Initialize any QR code specific features
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('QR Code Generator portfolio section loaded!');
+    
+    // Check if QR images are loaded
+    const qrImages = document.querySelectorAll('.project-qr');
+    if (qrImages.length > 0) {
+        console.log(`Found ${qrImages.length} QR code(s) in portfolio`);
+    }
+});
+
+// Handle right-click on QR code (for saving)
+document.querySelectorAll('.project-qr').forEach(qr => {
+    qr.addEventListener('contextmenu', (e) => {
+        // Don't show custom menu, allow default save-as
+        console.log('User may save QR code');
+    });
+});

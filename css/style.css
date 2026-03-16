@@ -624,6 +624,77 @@ h1, h2, h3, h4 {
     color: var(--primary-color);
 }
 
+/* ===== QR CODE STYLES - ADDED FOR QR CODE GENERATOR PROJECT ===== */
+.qr-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0;
+    padding: 10px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.qr-container:hover {
+    transform: scale(1.05);
+}
+
+.project-qr {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.qr-label {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #333;
+    font-weight: 500;
+    background: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* QR Code Animation */
+@keyframes qrPulse {
+    0% { box-shadow: 0 4px 15px rgba(74, 144, 226, 0.2); }
+    50% { box-shadow: 0 4px 25px rgba(74, 144, 226, 0.6); }
+    100% { box-shadow: 0 4px 15px rgba(74, 144, 226, 0.2); }
+}
+
+.qr-container {
+    animation: qrPulse 2s infinite;
+}
+
+/* QR Code Image Hover Effect */
+.project-card img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Special styling for QR code project card */
+.project-card .fa-qrcode {
+    color: white;
+}
+
+/* Research section QR code styling */
+.research-paper .paper-section img {
+    border: 3px solid var(--primary-color);
+    padding: 5px;
+    background: white;
+    transition: var(--transition);
+}
+
+.research-paper .paper-section img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+/* ===== END OF QR CODE STYLES ===== */
+
 /* Coding Profiles Section */
 .coding {
     padding: 80px 0;
@@ -930,6 +1001,12 @@ footer .container {
         display: inline-block;
         margin-bottom: 1rem;
     }
+    
+    /* Responsive QR code */
+    .project-qr {
+        width: 100px;
+        height: 100px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -967,6 +1044,16 @@ footer .container {
     }
     
     .experience-badge .text {
+        font-size: 0.7rem;
+    }
+    
+    /* Responsive QR code for mobile */
+    .project-qr {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .qr-label {
         font-size: 0.7rem;
     }
 }
