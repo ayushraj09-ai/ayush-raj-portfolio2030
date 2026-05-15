@@ -24,4 +24,43 @@ This is my personal portfolio website showcasing my skills, projects, and achiev
 - Font Awesome icons
 - Google Fonts (Poppins)
 
-## 📁 Project Structure﻿
+## 📁 Project Structure
+
+
+## 🎯 Projects Featured
+1. **Voice Banking Assistant** - AI-powered voice banking for low-literacy users
+2. **AI Student Chatbot** - NLP-powered assistant for college queries
+3. **DSA-Forge Platform** - Career platform for DSA & Full Stack development
+
+## 🔗 Connect With Me
+- **Email**: ayushraj1567890@gmail.com
+- **LinkedIn**: /in/ayush-raj-478294323
+- **GitHub**: /ayushraj09-ai
+- **LeetCode**: 300+ problems solved
+
+## 🏆 Achievements
+- Published Research Paper on Voice Banking Assistant
+- 300+ Problems solved on LeetCode
+- Gold Badge in Python on HackerRank
+
+## 📱 Responsive Design
+- Desktop (1200px+)
+- Tablet (768px - 1199px)
+- Mobile (480px - 767px)
+- Small Mobile (below 480px)
+
+## 🌟 Unique Features
+- Floating particle animation background
+- Neural network grid lines
+- Pulse animations on buttons and cards
+- Rotating icons on hover
+- Smooth scroll reveal animations
+- Typed text animation in hero section
+
+## 📄 License
+© 2025 Ayush Raj | All Rights Reserved
+
+## 👨‍💻 Author
+**Ayush Raj**
+- B.Tech CSE Student at CGC University (2023-2027)
+- Passionate about AI/ML, Full Stack Development, and FinTech
