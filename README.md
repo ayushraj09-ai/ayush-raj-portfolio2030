@@ -25,7 +25,15 @@ This is my personal portfolio website showcasing my skills, projects, and achiev
 - Google Fonts (Poppins)
 
 ## 📁 Project Structure
-
+ayush-raj-portfolio/
+├── index.html
+├── css/
+│ └── style.css
+├── js/
+│ └── script.js
+├── images/
+├── researchpaper/
+└── resume/
 
 ## 🎯 Projects Featured
 1. **Voice Banking Assistant** - AI-powered voice banking for low-literacy users
@@ -34,8 +42,8 @@ This is my personal portfolio website showcasing my skills, projects, and achiev
 
 ## 🔗 Connect With Me
 - **Email**: ayushraj1567890@gmail.com
-- **LinkedIn**: /in/ayush-raj-478294323
-- **GitHub**: /ayushraj09-ai
+- **LinkedIn**: https://www.linkedin.com/in/ayush-raj-478294323/
+- **GitHub**: https://github.com/ayushraj09-ai
 - **LeetCode**: 300+ problems solved
 
 ## 🏆 Achievements
