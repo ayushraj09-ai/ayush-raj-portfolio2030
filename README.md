@@ -1,7 +1,7 @@
 # Ayush Raj - AI-Powered Portfolio
 
 ## 🚀 Live Demo
-[View Portfolio](https://ayushraj09-ai.github.io/ayush-raj-portfolio/)
+[View Portfolio](https://verdant-caramel-5a7b19.netlify.app/)
 
 ## 📌 About
 This is my personal portfolio website showcasing my skills, projects, and achievements as a B.Tech CSE student. The portfolio features AI-inspired animations, dark/light mode toggle, and a fully responsive design.
@@ -58,7 +58,7 @@ This is my personal portfolio website showcasing my skills, projects, and achiev
 - Typed text animation in hero section
 
 ## 📄 License
-© 2025 Ayush Raj | All Rights Reserved
+© 2030 Ayush Raj | All Rights Reserved
 
 ## 👨‍💻 Author
 **Ayush Raj**
