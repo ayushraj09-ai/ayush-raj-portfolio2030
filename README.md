@@ -1,7 +1,5 @@
 # ✨ Ayush Raj | AI-Powered Portfolio
 
-![Portfolio Banner](https://raw.githubusercontent.com/ayushraj09-ai/ayush-raj-portfolio/main/images/banner.png)
-
 [![Website](https://img.shields.io/badge/🌐-Live_Demo-4a6cf7?style=for-the-badge&logo=google-chrome&logoColor=white)](https://verdant-caramel-5a7b19.netlify.app/)
 [![GitHub](https://img.shields.io/badge/🐙-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ayushraj09-ai)
 [![LinkedIn](https://img.shields.io/badge/🔗-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ayush-raj-478294323/)
@@ -51,7 +49,7 @@ I'm a **B.Tech CSE Student** at **CGC University** (2023-2027), passionate about
 | **Impact** | Makes digital banking accessible to millions of low-literacy users in India |
 | **Status** | 📄 Research Paper Published |
 
-[🔗 View Code](#) • [📄 Research Paper](#) • [🎥 Live Demo](#)
+[🔗 View Code](#) • [📄 Research Paper](https://www.pdffiller.com/s/51SGTpQg) • 
 
 ---
 
