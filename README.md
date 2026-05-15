@@ -1,74 +1,178 @@
-# Ayush Raj - AI-Powered Portfolio
+# ✨ Ayush Raj | AI-Powered Portfolio
 
-## 🚀 Live Demo
-[View Portfolio](https://verdant-caramel-5a7b19.netlify.app/)
+![Portfolio Banner](https://raw.githubusercontent.com/ayushraj09-ai/ayush-raj-portfolio/main/images/banner.png)
 
-## 📌 About
-This is my personal portfolio website showcasing my skills, projects, and achievements as a B.Tech CSE student. The portfolio features AI-inspired animations, dark/light mode toggle, and a fully responsive design.
+[![Website](https://img.shields.io/badge/🌐-Live_Demo-4a6cf7?style=for-the-badge&logo=google-chrome&logoColor=white)](https://verdant-caramel-5a7b19.netlify.app/)
+[![GitHub](https://img.shields.io/badge/🐙-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ayushraj09-ai)
+[![LinkedIn](https://img.shields.io/badge/🔗-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ayush-raj-478294323/)
+[![LeetCode](https://img.shields.io/badge/💻-LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=black)](https://leetcode.com/u/ayushraj0904/)
+[![Gmail](https://img.shields.io/badge/📧-Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ayushraj1567890@gmail.com)
 
-## ✨ Features
-- 🤖 AI-powered animated background with floating particles
-- 🌓 Dark/Light mode toggle with local storage
-- 📱 Fully responsive design for all devices
-- 🎯 Interactive project cards with detailed descriptions
-- 🔗 Direct links to GitHub and Live Demos
-- 💻 Coding profiles section (LeetCode, GitHub, HackerRank)
-- 📧 Contact section with clickable social links
-- 🎨 Modern UI with gradient effects and smooth animations
+---
 
-## 🛠️ Technologies Used
-- HTML5
-- CSS3 (with CSS Variables for theming)
-- JavaScript (ES6+)
-- Typed.js for typing animation
-- Font Awesome icons
-- Google Fonts (Poppins)
+## 🎯 **About Me**
 
-## 📁 Project Structure
+> *"Building innovative AI-powered applications and web-based systems that solve real-world problems in fintech and accessibility domains."*
+
+I'm a **B.Tech CSE Student** at **CGC University** (2023-2027), passionate about creating technology that makes a difference. I specialize in:
+
+- 🤖 **Artificial Intelligence & Machine Learning**
+- 🌐 **Full Stack Development**
+- 💰 **FinTech Solutions**
+- 🎤 **Voice Technology**
+
+---
+
+## ✨ **Portfolio Features**
+
+| Feature | Description |
+|---------|-------------|
+| 🤖 **AI Animated Background** | Floating particles and neural network grid animations |
+| 🌓 **Dark/Light Mode** | Seamless theme switching with localStorage persistence |
+| 📱 **Fully Responsive** | Optimized for all devices (Desktop, Tablet, Mobile) |
+| 🎯 **Interactive Projects** | Detailed project cards with live demo links |
+| 💻 **Coding Profiles** | LeetCode, GitHub, and HackerRank integration |
+| 🔗 **Smart Contact Section** | One-click access to email, LinkedIn, GitHub, and Phone |
+| 🎨 **Modern UI/UX** | Smooth animations, gradient effects, and hover interactions |
+
+---
+
+## 🚀 **Featured Projects**
+
+### 🎙️ **Voice Banking Assistant**
+*AI-Powered Voice Banking System for Low-Literacy Users*
+
+| Detail | Information |
+|--------|-------------|
+| **Problem** | Banking apps require reading/typing - difficult for elderly, rural, and low-literacy users |
+| **Solution** | Voice-enabled banking system supporting local language interactions |
+| **Features** | Voice commands, Local language support, Secure OTP verification, AI-based NLP, Text-to-Speech |
+| **Tech Stack** | `Python` `NLP` `Speech Recognition` `Flask` `Banking API` |
+| **Impact** | Makes digital banking accessible to millions of low-literacy users in India |
+| **Status** | 📄 Research Paper Published |
+
+[🔗 View Code](#) • [📄 Research Paper](#) • [🎥 Live Demo](#)
+
+---
+
+### 🤖 **AI Student Chatbot**
+*Intelligent NLP-Powered Assistant for College Inquiries*
+
+| Detail | Information |
+|--------|-------------|
+| **Purpose** | Answer student questions about admissions, exams, fees, and college events |
+| **Features** | 24/7 instant responses, College-specific training, Multi-language support |
+| **Tech Stack** | `Python` `Dialogflow` `NLP` `Flask` |
+| **Benefits** | Reduces manual support workload, Provides instant academic assistance |
+
+[🔗 View Code](#) • [🎥 Live Demo](#)
+
+---
+
+### 🌐 **DSA-Forge Platform**
+*Career Platform for DSA, Full Stack & AI/ML*
+
+| Detail | Information |
+|--------|-------------|
+| **Vision** | End-to-end career platform for tech aspirants |
+| **Offerings** | 1:1 Mentorship, 50+ Masterclasses, AI Resume Review, Live Doubt Solving |
+| **Impact** | 5000+ students enrolled, 4.8⭐ rating |
+| **Tech Stack** | `MERN` `AI Tools` `Tailwind CSS` `Node.js` |
+
+[🔗 Visit Website](https://dsa-forge.com) • [🔗 View Code](#)
+
+---
+
+## 💻 **Technical Skills**
+
+### **Languages**
+`Java` `Python` `JavaScript` `C++`
+
+### **Frontend**
+`HTML5` `CSS3` `React.js` `Bootstrap` `Tailwind CSS`
+
+### **Backend**
+`Node.js` `Python Flask` `Express.js` `REST APIs`
+
+### **Databases**
+`MySQL` `MongoDB` `PostgreSQL`
+
+### **AI/ML**
+`NLP` `Speech Recognition` `TensorFlow` `Scikit-learn`
+
+### **Tools & DevOps**
+`Git` `GitHub` `VS Code` `Postman` `Docker`
+
+---
+
+## 📊 **Coding Profiles**
+
+| Platform | Stats | Badge |
+|----------|-------|-------|
+| **LeetCode** | 300+ Problems Solved | 🔥 |
+| **GitHub** | 15+ Repositories | 📦 |
+| **HackerRank** | Gold Badge in Python | ⭐ 5⭐ |
+
+[![LeetCode](https://img.shields.io/badge/-LeetCode-FFA116?style=flat-square&logo=LeetCode&logoColor=black)](https://leetcode.com/u/ayushraj0904/)
+[![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=GitHub&logoColor=white)](https://github.com/ayushraj09-ai)
+[![HackerRank](https://img.shields.io/badge/-HackerRank-2EC866?style=flat-square&logo=HackerRank&logoColor=white)](https://www.hackerrank.com/profile/ayushraj1567890)
+
+---
+
+## 🏆 **Achievements**
+
+| Achievement | Description |
+|-------------|-------------|
+| 📄 **Published Research Paper** | Voice Banking Assistant for Low Literacy Users |
+| 💻 **300+ LeetCode Problems** | Consistent problem-solving practice |
+| ⭐ **HackerRank Gold Badge** | Python (5 Star) |
+| 🎓 **B.Tech CSE** | CGC University (2023-2027) |
+
+---
+
+## 📁 **Project Structure**
 ayush-raj-portfolio/
-├── index.html
+│
+├── index.html # Main HTML file
 ├── css/
-│ └── style.css
+│ └── style.css # Styles with dark/light mode
 ├── js/
-│ └── script.js
-├── images/
-├── researchpaper/
-└── resume/
+│ └── script.js # Interactive features
+├── images/ # Project images
+├── researchpaper/ # Published research papers
+└── resume/ # Downloadable resume
 
-## 🎯 Projects Featured
-1. **Voice Banking Assistant** - AI-powered voice banking for low-literacy users
-2. **AI Student Chatbot** - NLP-powered assistant for college queries
-3. **DSA-Forge Platform** - Career platform for DSA & Full Stack development
+---
 
-## 🔗 Connect With Me
-- **Email**: ayushraj1567890@gmail.com
-- **LinkedIn**: https://www.linkedin.com/in/ayush-raj-478294323/
-- **GitHub**: https://github.com/ayushraj09-ai
-- **LeetCode**: 300+ problems solved
+## 🛠️ **Technologies Used**
 
-## 🏆 Achievements
-- Published Research Paper on Voice Banking Assistant
-- 300+ Problems solved on LeetCode
-- Gold Badge in Python on HackerRank
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Font Awesome](https://img.shields.io/badge/Font_Awesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=white)
+![Google Fonts](https://img.shields.io/badge/Google_Fonts-4285F4?style=for-the-badge&logo=googlefonts&logoColor=white)
 
-## 📱 Responsive Design
-- Desktop (1200px+)
-- Tablet (768px - 1199px)
-- Mobile (480px - 767px)
-- Small Mobile (below 480px)
+---
 
-## 🌟 Unique Features
-- Floating particle animation background
-- Neural network grid lines
-- Pulse animations on buttons and cards
-- Rotating icons on hover
-- Smooth scroll reveal animations
-- Typed text animation in hero section
+## 📱 **Responsive Design**
 
-## 📄 License
-© 2030 Ayush Raj | All Rights Reserved
+| Device | Breakpoint | Status |
+|--------|------------|--------|
+| Desktop | 1200px+ | ✅ Fully Optimized |
+| Tablet | 768px - 1199px | ✅ Fully Optimized |
+| Mobile | 480px - 767px | ✅ Fully Optimized |
+| Small Mobile | Below 480px | ✅ Fully Optimized |
 
-## 👨‍💻 Author
-**Ayush Raj**
-- B.Tech CSE Student at CGC University (2023-2027)
-- Passionate about AI/ML, Full Stack Development, and FinTech
+---
+
+## 🚀 **Quick Start (Local Development)**
+
+```bash
+# Clone the repository
+git clone https://github.com/ayushraj09-ai/ayush-raj-portfolio.git
+
+# Navigate to project directory
+cd ayush-raj-portfolio
+
+# Open index.html in your browser
+# Or use Live Server (VS Code extension)
