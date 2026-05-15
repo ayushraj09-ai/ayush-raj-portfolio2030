@@ -1,19 +1,22 @@
+javascript
 // Mobile Menu Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const navLinks = document.querySelectorAll('.nav-menu a');
 
 // Toggle mobile menu
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+}
 
 // Close mobile menu when clicking a link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+        if (hamburger) hamburger.classList.remove('active');
+        if (navMenu) navMenu.classList.remove('active');
     });
 });
 
@@ -34,7 +37,8 @@ window.addEventListener('scroll', () => {
 
     navItems.forEach(item => {
         item.classList.remove('active');
-        if (item.getAttribute('href').slice(1) === current) {
+        const href = item.getAttribute('href');
+        if (href && href.slice(1) === current) {
             item.classList.add('active');
         }
     });
@@ -42,32 +46,38 @@ window.addEventListener('scroll', () => {
 
 // Typed.js Animation
 document.addEventListener('DOMContentLoaded', function() {
-    var typed = new Typed('.typed', {
-        strings: [
-            'Software Development',
-            'Artificial Intelligence',
-            'Full Stack Development',
-            'Problem Solving',
-            'Voice Technologies',
-            'FinTech Solutions'
-        ],
-        typeSpeed: 50,
-        backSpeed: 30,
-        backDelay: 2000,
-        loop: true
-    });
+    if (typeof Typed !== 'undefined') {
+        var typed = new Typed('.typed', {
+            strings: [
+                'Software Development',
+                'Artificial Intelligence',
+                'Full Stack Development',
+                'Problem Solving',
+                'Voice Technologies',
+                'FinTech Solutions',
+                'DSA & System Design'
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            loop: true
+        });
+    }
 });
 
 // Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+        const href = this.getAttribute('href');
+        if (href && href !== '#' && href !== '#0') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         }
     });
 });
@@ -89,8 +99,7 @@ if (contactForm) {
         submitBtn.disabled = true;
         
         try {
-            // Here you would typically send the data to your backend
-            // For now, we'll simulate a successful submission
+            // Simulate API call
             await new Promise(resolve => setTimeout(resolve, 1500));
             
             // Show success message
@@ -106,7 +115,7 @@ if (contactForm) {
 }
 
 // Scroll reveal animation
-const revealElements = document.querySelectorAll('.skill-category, .project-card, .info-card, .coding-card');
+const revealElements = document.querySelectorAll('.skill-category, .project-card, .info-card, .coding-card, .featured-project');
 
 const revealOnScroll = () => {
     const windowHeight = window.innerHeight;
@@ -133,14 +142,15 @@ window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
 
 // Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero');
-    const scrollPosition = window.scrollY;
-    
-    if (scrollPosition < 600) {
-        hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
-    }
-});
+const hero = document.querySelector('.hero');
+if (hero) {
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        if (scrollPosition < 600) {
+            hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+        }
+    });
+}
 
 // Dynamic year in footer
 document.addEventListener('DOMContentLoaded', () => {
@@ -197,7 +207,7 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ===== QR CODE INTERACTIONS - ADDED FOR QR CODE GENERATOR =====
+// ===== QR CODE INTERACTIONS - ENHANCED =====
 
 // QR Code hover effect enhancement
 document.querySelectorAll('.qr-container').forEach(container => {
@@ -237,15 +247,19 @@ document.querySelectorAll('.project-qr').forEach(qr => {
     qr.addEventListener('click', function(e) {
         e.stopPropagation();
         
+        // Check if modal already exists
+        if (document.querySelector('.qr-modal')) return;
+        
         // Create modal for enlarged QR
         const modal = document.createElement('div');
+        modal.className = 'qr-modal';
         modal.style.cssText = `
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -261,50 +275,72 @@ document.querySelectorAll('.project-qr').forEach(qr => {
             max-width: 80%;
             max-height: 80%;
             border-radius: 20px;
-            box-shadow: 0 0 30px rgba(255,255,255,0.2);
+            box-shadow: 0 0 40px rgba(74, 108, 247, 0.5);
             animation: scaleIn 0.3s ease;
+            cursor: default;
         `;
         
         const closeBtn = document.createElement('div');
-        closeBtn.innerHTML = '×';
+        closeBtn.innerHTML = '✕';
         closeBtn.style.cssText = `
             position: absolute;
             top: 20px;
             right: 30px;
             color: white;
-            font-size: 50px;
+            font-size: 40px;
             cursor: pointer;
             font-weight: bold;
+            transition: transform 0.3s;
+            z-index: 10001;
         `;
+        closeBtn.onmouseenter = () => closeBtn.style.transform = 'scale(1.2)';
+        closeBtn.onmouseleave = () => closeBtn.style.transform = 'scale(1)';
         
         const scanText = document.createElement('div');
         scanText.innerHTML = '📱 Scan with your phone camera';
         scanText.style.cssText = `
             position: absolute;
-            bottom: 30px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             color: white;
-            font-size: 18px;
-            background: rgba(74, 108, 247, 0.8);
-            padding: 10px 20px;
-            border-radius: 30px;
+            font-size: 16px;
+            background: rgba(74, 108, 247, 0.9);
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 500;
         `;
         
         modal.appendChild(enlargedImg);
         modal.appendChild(closeBtn);
         modal.appendChild(scanText);
         document.body.appendChild(modal);
+        document.body.style.overflow = 'hidden';
         
-        // Close modal when clicking
-        modal.addEventListener('click', () => {
-            modal.remove();
+        // Close modal when clicking background
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.remove();
+                document.body.style.overflow = '';
+            }
         });
         
-        // Prevent closing when clicking on image
-        enlargedImg.addEventListener('click', (e) => {
+        // Close with close button
+        closeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            modal.remove();
+            document.body.style.overflow = '';
         });
+        
+        // Close with Escape key
+        const escHandler = (e) => {
+            if (e.key === 'Escape') {
+                modal.remove();
+                document.body.style.overflow = '';
+                document.removeEventListener('keydown', escHandler);
+            }
+        };
+        document.addEventListener('keydown', escHandler);
     });
 });
 
@@ -312,42 +348,33 @@ document.querySelectorAll('.project-qr').forEach(qr => {
 const qrAnimationStyle = document.createElement('style');
 qrAnimationStyle.textContent = `
     @keyframes scaleIn {
-        from {
-            transform: scale(0.5);
-            opacity: 0;
-        }
-        to {
-            transform: scale(1);
-            opacity: 1;
-        }
+        from                                        { transform: scale(0.5); opacity: 0; }
+        to                                          { transform: scale(1); opacity: 1; }
     }
 `;
 document.head.appendChild(qrAnimationStyle);
-
-// Track QR code scans (clicks)
-document.querySelectorAll('.qr-container a[href]').forEach(link => {
-    link.addEventListener('click', function() {
-        console.log('QR Code link clicked - redirecting to app');
-        // You could add analytics tracking here
-    });
-});
 
 // Add tooltip for QR code
 document.querySelectorAll('.qr-container').forEach(container => {
     const tooltip = document.createElement('div');
     tooltip.className = 'qr-tooltip';
-    tooltip.textContent = 'Click QR to enlarge • Long press to save';
+    tooltip.textContent = '🔍 Click to enlarge • 📱 Scan with phone';
     tooltip.style.cssText = `
         position: absolute;
-        background: rgba(0,0,0,0.8);
+        background: rgba(0,0,0,0.85);
         color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
+        padding: 6px 12px;
+        border-radius: 8px;
         font-size: 12px;
         pointer-events: none;
         opacity: 0;
         transition: opacity 0.3s;
         z-index: 100;
+        white-space: nowrap;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 8px;
     `;
     
     container.style.position = 'relative';
@@ -362,6 +389,32 @@ document.querySelectorAll('.qr-container').forEach(container => {
     });
 });
 
+// ===== DSA-FORGE SPECIFIC INTERACTIONS =====
+
+// Add hover effect for DSA-Forge featured project
+const dsaForgeCard = document.querySelector('.featured-project:first-child');
+if (dsaForgeCard && dsaForgeCard.querySelector('.dsa-forge-badge')) {
+    dsaForgeCard.addEventListener('mouseenter', () => {
+        dsaForgeCard.style.transform = 'translateY(-5px)';
+        dsaForgeCard.style.transition = 'transform 0.3s ease';
+    });
+    
+    dsaForgeCard.addEventListener('mouseleave', () => {
+        dsaForgeCard.style.transform = 'translateY(0)';
+    });
+}
+
+// DSA-Forge link click tracking
+const dsaForgeLinks = document.querySelectorAll('a[href*="dsa-forge.com"]');
+dsaForgeLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        console.log('DSA-Forge platform link clicked:', link.href);
+        // You can add analytics tracking here
+    });
+});
+
+// ===== END OF DSA-FORGE INTERACTIONS =====
+
 // ===== END OF QR CODE INTERACTIONS =====
 
 // Project card hover effects
@@ -370,6 +423,7 @@ document.querySelectorAll('.project-card').forEach(card => {
         const icon = card.querySelector('.project-icon i');
         if (icon) {
             icon.style.transform = 'scale(1.2) rotate(5deg)';
+            icon.style.transition = 'transform 0.3s ease';
         }
     });
     
@@ -385,6 +439,7 @@ document.querySelectorAll('.project-card').forEach(card => {
 document.querySelectorAll('.skill-tag').forEach(tag => {
     tag.addEventListener('mouseenter', function() {
         this.style.transform = 'scale(1.1)';
+        this.style.transition = 'transform 0.2s ease';
     });
     
     tag.addEventListener('mouseleave', function() {
@@ -411,10 +466,12 @@ document.head.appendChild(fadeStyle);
 
 // Prevent default behavior for empty links
 document.querySelectorAll('a[href="#"]').forEach(link => {
-    link.addEventListener('click', (e) => e.preventDefault());
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+    });
 });
 
-// Add scroll to top button functionality
+// Create scroll to top button
 const createScrollTopButton = () => {
     const button = document.createElement('button');
     button.innerHTML = '<i class="fas fa-arrow-up"></i>';
@@ -436,6 +493,17 @@ const createScrollTopButton = () => {
         z-index: 999;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     `;
+    
+    // Hover effect
+    button.addEventListener('mouseenter', () => {
+        button.style.transform = 'translateY(-3px)';
+        button.style.backgroundColor = '#3a5bd9';
+    });
+    
+    button.addEventListener('mouseleave', () => {
+        button.style.transform = 'translateY(0)';
+        button.style.backgroundColor = 'var(--primary-color)';
+    });
     
     document.body.appendChild(button);
     
@@ -460,29 +528,70 @@ const createScrollTopButton = () => {
 // Initialize scroll to top button
 createScrollTopButton();
 
-// Add smooth scroll for QR code links
-document.querySelectorAll('a[href^="http"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-        // Don't prevent default - let it open normally
-        console.log('External link clicked:', link.href);
-    });
+// External link click logging
+document.querySelectorAll('a[href^="http"], a[href^="https"]').forEach(link => {
+    // Only for links that are not internal hash links
+    if (!link.getAttribute('href').startsWith('#') && !link.getAttribute('href').startsWith('mailto:')) {
+        link.addEventListener('click', (e) => {
+            console.log('External link clicked:', link.href);
+            // You can add analytics tracking here
+        });
+    }
 });
 
-// Initialize any QR code specific features
+// Initialize QR code features on DOM load
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('QR Code Generator portfolio section loaded!');
+    console.log('Portfolio loaded with DSA-Forge and QR Code Generator projects!');
     
     // Check if QR images are loaded
     const qrImages = document.querySelectorAll('.project-qr');
     if (qrImages.length > 0) {
         console.log(`Found ${qrImages.length} QR code(s) in portfolio`);
     }
+    
+    // Check if DSA-Forge link exists
+    const dsaForgeSite = document.querySelector('a[href*="dsa-forge.com"]');
+    if (dsaForgeSite) {
+        console.log('DSA-Forge project link is active:', dsaForgeSite.href);
+    }
 });
 
-// Handle right-click on QR code (for saving)
-document.querySelectorAll('.project-qr').forEach(qr => {
-    qr.addEventListener('contextmenu', (e) => {
-        // Don't show custom menu, allow default save-as
-        console.log('User may save QR code');
+// Add keyboard shortcut for accessibility (Alt+Q focuses first QR code)
+document.addEventListener('keydown', (e) => {
+    if (e.altKey && e.key === 'q') {
+        e.preventDefault();
+        const firstQr = document.querySelector('.qr-container');
+        if (firstQr) {
+            firstQr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            firstQr.style.animation = 'qrPulse 0.5s 2';
+            setTimeout(() => {
+                firstQr.style.animation = '';
+            }, 1000);
+        }
+    }
+});
+
+// Add console warning for missing images
+document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', () => {
+        console.warn('Image failed to load:', img.src);
+        // Optionally set a fallback
+        if (img.classList.contains('project-qr')) {
+            img.src = 'https://placehold.co/120x120/4a6cf7/white?text=QR';
+        }
+    });
+});
+
+// Smooth animation for section transitions
+document.querySelectorAll('.btn-primary, .btn-secondary, .btn-outline').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
     });
 });

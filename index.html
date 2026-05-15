@@ -1,565 +1,1179 @@
+Here is your complete portfolio HTML code with detailed project explanations, unique AI animations, and Light/Dark mode toggle.
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayush Raj - B.Tech CSE Student | AI & Full Stack Developer</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Ayush Raj - AI-Powered Portfolio | B.Tech CSE Student</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* QR Code Styling - Add this to your CSS file later */
-        .qr-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 15px 0;
-            padding: 10px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 10px;
-            transition: transform 0.3s ease;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
-        .qr-container:hover {
+
+        :root {
+            --primary-color: #4a6cf7;
+            --secondary-color: #6c757d;
+            --accent-orange: #ff6b35;
+            --accent-gold: #ffd700;
+            --neon-blue: #00d4ff;
+            --neon-purple: #9d4edd;
+            --neon-pink: #ff6eb4;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Light Mode */
+        :root {
+            --bg-primary: #f9f9f9;
+            --bg-secondary: #ffffff;
+            --text-primary: #2d2e32;
+            --text-secondary: #767676;
+            --card-bg: #ffffff;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --hero-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            --bg-primary: #0a0c0f;
+            --bg-secondary: #1a1d24;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --card-bg: #1e1e2e;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --nav-bg: rgba(10, 15, 28, 0.95);
+            --hero-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* AI Animated Background Particles */
+        .ai-particle-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .ai-particle {
+            position: absolute;
+            background: radial-gradient(circle, var(--neon-blue), transparent);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Neural Grid */
+        .neural-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.08;
+            background-image: 
+                linear-gradient(var(--neon-blue) 1px, transparent 1px),
+                linear-gradient(90deg, var(--neon-blue) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--neon-blue));
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(74, 108, 247, 0.4);
+            transition: all 0.3s ease;
+            animation: btnPulse 2s infinite;
+        }
+
+        @keyframes btnPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* AI Loader */
+        .ai-loader {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 8px 15px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--neon-blue);
+        }
+
+        .ai-loader:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        .ai-loader span {
+            color: var(--neon-blue);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .loader-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            display: inline-block;
+            animation: dotPulse 1.2s ease-in-out infinite;
+        }
+
+        .loader-dot:nth-child(2) { animation-delay: 0.2s; }
+        .loader-dot:nth-child(3) { animation-delay: 0.4s; }
+        .loader-dot:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes dotPulse {
+            0%, 100% { transform: scale(0.8); opacity: 0.4; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--neon-blue));
+            border-radius: 2px;
+            animation: widthPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes widthPulse {
+            0%, 100% { width: 80px; }
+            50% { width: 120px; }
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--primary-color), var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--primary-color), var(--neon-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--neon-blue));
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: var(--transition);
+            background: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 100px;
+            background: var(--hero-bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-text .greeting {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-gold);
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .typed-text {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .typed {
+            color: var(--accent-gold);
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        .description {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-image {
+            animation: floatImage 4s ease-in-out infinite;
+        }
+
+        @keyframes floatImage {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .image-wrapper {
+            width: 350px;
+            height: 350px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* About Section */
+        .about, .skills, .projects, .coding, .contact {
+            padding: 80px 0;
+            background: var(--bg-primary);
+        }
+
+        .about-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card, .skill-category, .coding-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .info-card:hover, .skill-category:hover, .coding-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(74, 108, 247, 0.2);
+        }
+
+        .info-card i, .coding-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3, .skill-category h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: rgba(74, 108, 247, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.08);
+        }
+
+        /* Projects Section - Enhanced with Detailed Explanations */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 20px 40px rgba(74, 108, 247, 0.25);
+        }
+
+        .project-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-color), var(--neon-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            transform: rotate(360deg);
+        }
+
+        .project-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .project-card h3 {
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-brief {
+            color: var(--neon-blue);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Project Description Styles */
+        .project-description {
+            margin: 1rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-description p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .features-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 0.8rem 0 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 0.8rem;
+        }
+
+        .features-list li {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.4rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: '▹';
+            color: var(--neon-blue);
+            position: absolute;
+            left: 0;
+        }
+
+        .impact-text {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            font-style: italic;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(74, 108, 247, 0.05);
+            border-radius: 10px;
+        }
+
+        .card-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 1rem 0 0.8rem;
+        }
+
+        .card-tech span {
+            background: rgba(74, 108, 247, 0.1);
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .card-tech span:hover {
+            background: var(--primary-color);
+            color: white;
             transform: scale(1.05);
         }
-        
-        .project-qr {
-            width: 120px;
-            height: 120px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+
+        /* Coding Profiles */
+        .coding-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
-        
-        .qr-label {
-            margin-top: 8px;
-            font-size: 0.8rem;
-            color: #333;
-            font-weight: 500;
-            background: white;
-            padding: 4px 12px;
+
+        .coding-card {
+            text-decoration: none;
+            display: block;
+            transition: all 0.4s ease;
+        }
+
+        .coding-card:hover i {
+            transform: scale(1.2);
+            text-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        .coding-card h3 {
+            color: var(--text-primary);
+        }
+
+        .coding-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Contact */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            border-color: var(--neon-blue);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .contact-item h3 {
+            color: var(--text-primary);
+        }
+
+        .contact-item p, .contact-item a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            padding: 2rem;
             border-radius: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
         }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 4px 15px rgba(74, 144, 226, 0.2); }
-            50% { box-shadow: 0 4px 25px rgba(74, 144, 226, 0.6); }
-            100% { box-shadow: 0 4px 15px rgba(74, 144, 226, 0.2); }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
         }
-        
-        .qr-container {
-            animation: pulse 2s infinite;
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
         }
-        
-        .project-card img:hover {
-            transform: scale(1.1);
-            transition: transform 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+
+        .contact-form button {
+            width: 100%;
+            cursor: pointer;
+            border: none;
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: var(--nav-bg);
+                width: 100%;
+                text-align: center;
+                padding: 2rem 0;
+                transition: 0.3s;
+            }
+            .nav-menu.active { left: 0; }
+            .hero-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-buttons { justify-content: center; }
+            .image-wrapper { width: 250px; height: 250px; }
+            .contact-content { grid-template-columns: 1fr; }
+            .section-title { font-size: 2rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 2rem; }
+            .typed-text { font-size: 1rem; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+
+    <div class="ai-particle-field" id="particleField"></div>
+    <div class="neural-grid"></div>
+
     <nav class="navbar">
         <div class="container">
-            <div class="logo">
-                <a href="#home">AYUSH <span>RAJ</span></a>
-            </div>
+            <div class="logo"><a href="#home">AYUSH <span>RAJ</span></a></div>
             <ul class="nav-menu">
-                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#coding">Coding</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
         </div>
     </nav>
 
-    <!-- Home Section -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="ai-loader" id="aiLoader">
+        <span>🤖 AI Active</span>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+    </div>
+
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <p class="greeting">Hello, I'm</p>
+                    <p class="greeting">🚀 Hello, I'm</p>
                     <h1>Ayush Raj</h1>
-                    <p class="subtitle">B.Tech CSE Student at CGC University </p>
+                    <p class="subtitle">B.Tech CSE Student at CGC University</p>
                     <div class="typed-text">Passionate about <span class="typed"></span></div>
-                    <p class="description">
-                        Building innovative AI-powered applications and web-based systems 
-                        that solve real-world problems in fintech and accessibility domains.
-                    </p>
+                    <p class="description">Building innovative AI-powered applications and web-based systems that solve real-world problems in fintech and accessibility domains.</p>
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary">View Projects</a>
                         <a href="#contact" class="btn btn-secondary">Contact Me</a>
-                        <a href="resume/Ayushraj_2330091_resume.pdf" download class="btn btn-outline">
-                            <i class="fas fa-download"></i> Resume
-                        </a>
+                        <a href="resume/548.pdf" class="btn btn-outline"><i class="fas fa-download"></i> Resume</a>
                     </div>
                 </div>
                 <div class="hero-image">
                     <div class="image-wrapper">
                         <img src="images/123.jpeg" alt="Ayush Raj">
-                        <div class="experience-badge">
-                            <span class="number">Research</span>
-                            <span class="text">Paper Published</span>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">About <span>Me</span></h2>
-            <div class="about-content">
-                <div class="about-info">
-                    <div class="info-card">
-                        <i class="fas fa-graduation-cap"></i>
-                        <h3>Education</h3>
-                        <p>B.Tech Computer Science Engineering</p>
-                        <p class="light-text">CGC University | 2023-2027</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-bullseye"></i>
-                        <h3>Career Goal</h3>
-                        <p>Software Developer / AI Engineer</p>
-                        <p class="light-text">Building impactful technologies</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-heart"></i>
-                        <h3>Interests</h3>
-                        <p>AI/ML • Full Stack • FinTech • Voice Tech</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-trophy"></i>
-                        <h3>Achievement</h3>
-                        <p>Published Research Paper</p>
-                        <p class="light-text">Voice Banking Assistant</p>
-                    </div>
-                </div>
+            <div class="about-info">
+                <div class="info-card"><i class="fas fa-graduation-cap"></i><h3>Education</h3><p>B.Tech CSE · CGC University<br>2023-2027</p></div>
+                <div class="info-card"><i class="fas fa-bullseye"></i><h3>Career Goal</h3><p>Software Developer / AI Engineer<br>Building impactful technologies</p></div>
+                <div class="info-card"><i class="fas fa-heart"></i><h3>Interests</h3><p>AI/ML · Full Stack · FinTech · Voice Tech</p></div>
+                <div class="info-card"><i class="fas fa-trophy"></i><h3>Achievement</h3><p>Published Research Paper<br>Voice Banking Assistant</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title">Technical <span>Skills</span></h2>
             <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Languages</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">C++</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-laptop-code"></i> Frontend</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">React.js</span>
-                        <span class="skill-tag">Bootstrap</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-server"></i> Backend</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Python Flask</span>
-                        <span class="skill-tag">REST APIs</span>
-                        <span class="skill-tag">Express.js</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-database"></i> Databases</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-robot"></i> AI/ML</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">NLP</span>
-                        <span class="skill-tag">Speech Recognition</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-tools"></i> Tools</h3>
-                    <div class="skill-items">
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub</span>
-                        <span class="skill-tag">VS Code</span>
-                        <span class="skill-tag">Postman</span>
-                    </div>
-                </div>
+                <div class="skill-category"><h3><i class="fas fa-code"></i> Languages</h3><div class="skill-items"><span class="skill-tag">Java</span><span class="skill-tag">Python</span><span class="skill-tag">JavaScript</span><span class="skill-tag">C++</span></div></div>
+                <div class="skill-category"><h3><i class="fas fa-database"></i> Databases</h3><div class="skill-items"><span class="skill-tag">MySQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag">PostgreSQL</span></div></div>
+                <div class="skill-category"><h3><i class="fas fa-robot"></i> AI/ML</h3><div class="skill-items"><span class="skill-tag">NLP</span><span class="skill-tag">Speech Recognition</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">Scikit-learn</span></div></div>
+                <div class="skill-category"><h3><i class="fas fa-laptop-code"></i> Frontend</h3><div class="skill-items"><span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">React.js</span><span class="skill-tag">Bootstrap</span></div></div>
+                <div class="skill-category"><h3><i class="fas fa-server"></i> Backend</h3><div class="skill-items"><span class="skill-tag">Node.js</span><span class="skill-tag">Python Flask</span><span class="skill-tag">REST APIs</span><span class="skill-tag">Express.js</span></div></div>
+                <div class="skill-category"><h3><i class="fas fa-tools"></i> Tools</h3><div class="skill-items"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">VS Code</span><span class="skill-tag">Postman</span></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">Featured <span>Projects</span></h2>
-            
-            <!-- Featured Project -->
-            <div class="featured-project">
-                <div class="project-badge">⭐ Featured Project</div>
-                <h3>Localized Voice Banking Assistant</h3>
-                <p class="project-subtitle">AI-Powered Voice Banking System for Low-Literacy Users</p>
-                
-                <div class="project-content">
-                    <div class="project-problem">
-                        <h4><i class="fas fa-exclamation-triangle"></i> Problem</h4>
-                        <p>Many banking apps require reading and typing - difficult for elderly, rural, and low-literacy users.</p>
-                    </div>
-                    
-                    <div class="project-solution">
-                        <h4><i class="fas fa-lightbulb"></i> Solution</h4>
-                        <p>Voice-enabled banking system supporting local language interactions.</p>
-                    </div>
-                    
-                    <div class="project-features">
-                        <h4><i class="fas fa-star"></i> Features</h4>
-                        <ul>
-                            <li>🎤 Voice command banking (balance check, money transfer, bill payments)</li>
-                            <li>🌐 Local language support</li>
-                            <li>🔐 Secure OTP verification</li>
-                            <li>🤖 AI-based NLP for natural conversations</li>
-                            <li>🔊 Text-to-Speech voice responses</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="project-tech">
-                        <h4><i class="fas fa-cog"></i> Tech Stack</h4>
-                        <div class="tech-tags">
-                            <span>Python</span>
-                            <span>Speech Recognition</span>
-                            <span>NLP</span>
-                            <span>JavaScript</span>
-                            <span>Banking API</span>
-                        </div>
-                    </div>
-                    
-                    <div class="project-impact">
-                        <h4><i class="fas fa-chart-line"></i> Impact</h4>
-                        <p>Makes digital banking accessible to millions of low-literacy users in India.</p>
-                    </div>
-                    
-                    <div class="project-role">
-                        <h4><i class="fas fa-user"></i> My Role</h4>
-                        <ul>
-                            <li>Designed AI voice interaction system</li>
-                            <li>Implemented speech recognition and NLP processing</li>
-                            <li>Developed web interface</li>
-                            <li>Published research paper on the system</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="project-links">
-                        <a href="#" class="btn-small"><i class="fab fa-github"></i> GitHub</a>
-                        <a href="researchpaper/Research Paper on voice-banking-assistant updated.pdf" class="btn-small"><i class="fas fa-file-alt"></i> Research Paper</a>
-                        <a href="#" class="btn-small"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Other Projects Grid -->
+            <h2 class="section-title">🚀 Featured <span>Projects</span></h2>
             <div class="projects-grid">
-                <!-- Project 1: AI Chatbot -->
+                
+                <!-- Project 1: Voice Banking Assistant -->
                 <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-robot"></i>
+                    <div class="project-icon"><i class="fas fa-microphone-alt"></i></div>
+                    <h3>Voice Banking Assistant</h3>
+                    <p class="project-brief">AI-powered voice banking for low-literacy users</p>
+                    <div class="project-description">
+                        <p>Developed an AI-powered voice banking assistant designed for low-literacy and non-technical users. The system enables users to perform banking-related tasks using voice commands instead of traditional text-based interfaces.</p>
+                        <div class="features-title"><i class="fas fa-star"></i> Key Features</div>
+                        <ul class="features-list">
+                            <li>Speech-to-text voice interaction</li>
+                            <li>AI-based command understanding</li>
+                            <li>Banking query assistance</li>
+                            <li>User-friendly interface for accessibility</li>
+                            <li>Real-time voice response system</li>
+                        </ul>
+                        <div class="impact-text">💡 Impact: Improves digital banking accessibility for users who face difficulties with typing, reading, or navigating traditional banking apps.</div>
                     </div>
-                    <h3>AI Chatbot for Student Queries</h3>
-                    <p class="project-brief">Intelligent assistant for college-related inquiries</p>
-                    <ul class="project-highlights">
-                        <li>NLP-powered chatbot answering student questions</li>
-                        <li>Trained on college data for admissions, exams, fees</li>
-                        <li>Built with Python and Dialogflow</li>
-                    </ul>
-                    <div class="card-tech">
-                        <span>Python</span>
-                        <span>NLP</span>
-                        <span>Dialogflow</span>
-                    </div>
+                    <div class="card-tech"><span>JavaScript</span><span>NLP</span><span>Speech Recognition</span><span>AI/ML</span></div>
                     <div class="card-links">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fas fa-external-link-alt"></i></a>
-                    </div>
+                <a href="https://github.com/ayushraj09-ai/voice-banking-assistant" target="_blank">
+                <i class="fab fa-github"></i> Code
+                 </a>
+</div>
                 </div>
 
-                <!-- Project 2: Student Management System -->
+                <!-- Project 2: AI Student Chatbot -->
                 <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-users-cog"></i>
+                    <div class="project-icon"><i class="fas fa-robot"></i></div>
+                    <h3>AI Student Chatbot</h3>
+                    <p class="project-brief">NLP-powered assistant for college queries</p>
+                    <div class="project-description">
+                        <p>Built an NLP-powered AI chatbot that helps students with academic and college-related queries. The chatbot provides automated responses for common student questions such as schedules, subjects, notices, and guidance.</p>
+                        <div class="features-title"><i class="fas fa-star"></i> Key Features</div>
+                        <ul class="features-list">
+                            <li>AI conversational chatbot</li>
+                            <li>Natural Language Processing support</li>
+                            <li>Automated student query handling</li>
+                            <li>Fast response system</li>
+                            <li>Scalable college assistance solution</li>
+                        </ul>
+                        <div class="impact-text">💡 Impact: Reduces manual support workload and provides students with instant academic assistance anytime.</div>
                     </div>
-                    <h3>Student Management System</h3>
-                    <p class="project-brief">Full-stack web application for educational institutions</p>
-                    <ul class="project-highlights">
-                        <li>Student records, attendance tracking, grade management</li>
-                        <li>Role-based access for admin, teachers, students</li>
-                        <li>Built with MERN stack</li>
-                    </ul>
-                    <div class="card-tech">
-                        <span>MongoDB</span>
-                        <span>Express</span>
-                        <span>React</span>
-                        <span>Node.js</span>
-                    </div>
-                    <div class="card-links">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fas fa-external-link-alt"></i></a>
-                    </div>
+                    <div class="card-tech"><span>JavaScript</span><span>Dialogflow</span><span>NLP</span><span>AI Chatbot</span></div>
                 </div>
 
-                <!-- Project 3: Portfolio Website -->
+                <!-- Project 3: DSA-Forge Platform -->
                 <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-code"></i>
+                    <div class="project-icon"><i class="fas fa-globe"></i></div>
+                    <h3>DSA-Forge Platform</h3>
+                    <p class="project-brief">Career platform for DSA & Full Stack Development</p>
+                    <div class="project-description">
+                        <p>Created a modern career and learning platform focused on DSA (Data Structures & Algorithms) and Full Stack Development preparation. The platform is designed to help students improve coding skills and track their learning journey.</p>
+                        <div class="features-title"><i class="fas fa-star"></i> Key Features</div>
+                        <ul class="features-list">
+                            <li>DSA learning resources</li>
+                            <li>Full Stack Development roadmap</li>
+                            <li>Responsive modern UI</li>
+                            <li>Career-focused platform design</li>
+                            <li>Interactive web experience</li>
+                        </ul>
+                        <div class="impact-text">💡 Impact: Helps beginners and aspiring developers prepare for technical interviews and improve problem-solving skills efficiently.</div>
                     </div>
-                    <h3>Portfolio Website</h3>
-                    <p class="project-brief">Personal portfolio showcasing projects and skills</p>
-                    <ul class="project-highlights">
-                        <li>Responsive design with modern UI/UX</li>
-                        <li>Clean and professional layout</li>
-                        <li>Built with HTML, CSS, JavaScript</li>
-                    </ul>
-                    <div class="card-tech">
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                        <span>JavaScript</span>
-                    </div>
-                    <div class="card-links">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
+                    <div class="card-tech"><span>MERN Stack</span><span>Tailwind CSS</span><span>AI Integration</span></div>
+                     </a>
+                     <div class="card-links">
+    <a href="https://github.com/ayushraj09-ai/ai-dsa-forge-new-2028" target="_blank">
+        <i class="fab fa-github"></i> Code
+    </a>
 
-                <!-- Project 4: QR Code Generator (NEW) -->
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-qrcode"></i>
-                    </div>
-                    <h3>QR Code Generator PWA</h3>
-                    
-                    <!-- QR Code Image - Scan to try -->
-                    <div class="qr-container">
-                        <img src="images/qr code .jpeg" alt="Scan to try QR Generator" class="project-qr">
-                        <span class="qr-label">📱 Scan to try</span>
-                    </div>
-                    
-                    <p class="project-brief">PWA app to generate custom QR codes</p>
-                    <ul class="project-highlights">
-                        <li>Generate QR codes for URLs, text, and more</li>
-                        <li>Custom colors, sizes, and formats</li>
-                        <li>Installable PWA - works offline</li>
-                        <li>History tracking and share functionality</li>
-                    </ul>
-                    <div class="card-tech">
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                        <span>JavaScript</span>
-                        <span>PWA</span>
-                    </div>
-                    <div class="card-links">
-                        <a href="https://github.com/ayushraj09-ai/qr-code-generator" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://qr-code-generator-ayush-raj.onrender.com" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                    </div>
+            <a href="https://dsa-forge.com/" target="_blank">
+            <i class="fas fa-external-link-alt"></i> Live
+            </a>
+</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Coding Profiles Section -->
     <section id="coding" class="coding">
         <div class="container">
             <h2 class="section-title">Coding <span>Profiles</span></h2>
             <div class="coding-grid">
-                <a href="https://leetcode.com/u/ayushraj0904/" target="_blank" class="coding-card leetcode">
-                    <i class="fab fa-free-code-camp"></i>
-                    <h3>LeetCode</h3>
-                    <p>Solved 300+ Problems</p>
-                    <span class="profile-link">View Profile →</span>
-                </a>
-                <a href="https://github.com/ayushraj09-ai" target="_blank" class="coding-card github">
-                    <i class="fab fa-github"></i>
-                    <h3>GitHub</h3>
-                    <p>15+ Repositories • 200+ Contributions</p>
-                    <span class="profile-link">View Profile →</span>
-                </a>
-                <a href="https://www.hackerrank.com/profile/ayushraj1567890" target="_blank" class="coding-card hackerrank">
-                    <i class="fab fa-hackerrank"></i>
-                    <h3>HackerRank</h3>
-                    <p>Gold Badge in Python • 5⭐</p>
-                    <span class="profile-link">View Profile →</span>
-                </a>
+                <a href="https://leetcode.com/u/ayushraj0904/" class="coding-card"><i class="fab fa-free-code-camp"></i><h3>LeetCode</h3><p>Solved 300+ Problems</p></a>
+                <a href="https://github.com/ayushraj09-ai" class="coding-card"><i class="fab fa-github"></i><h3>GitHub</h3><p>15+ Repos · 200+ Contributions</p></a>
+                <a href="https://www.hackerrank.com/profile/ayushraj1567890" class="coding-card"><i class="fab fa-hackerrank"></i><h3>HackerRank</h3><p>Gold Badge · 5⭐ Python</p></a>
             </div>
         </div>
     </section>
 
-    <!-- Detailed Project Description Section -->
-    <section class="project-detail">
-        <div class="container">
-            <h2 class="section-title">Research <span>Project</span></h2>
-            <div class="research-paper">
-                <h3>Localized Voice Banking Assistant for Low Literacy Users</h3>
+   <!-- Contact Section - Centered -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title">Get In <span>Touch</span></h2>
+        
+        <!-- Centered Contact Items -->
+        <div style="display: flex; justify-content: center; align-items: center; min-height: 400px;">
+            <div style="display: flex; flex-direction: column; gap: 1.5rem; width: 100%; max-width: 500px;">
                 
-                <div class="paper-section">
-                    <h4>📋 Overview</h4>
-                    <p>An AI-powered voice banking assistant designed to help low-literacy and rural users access digital banking services using voice commands in their local language. The system enables users to check balances, transfer money, view transaction history, and make payments—all through speech recognition and voice responses.</p>
-                </div>
-
-                <div class="paper-section">
-                    <h4>🎯 Problem Statement</h4>
-                    <p>Traditional banking applications rely on text-based interfaces, creating barriers for elderly users, rural populations, and people with limited literacy. This project eliminates those barriers through voice-based interaction.</p>
-                </div>
-
-                <div class="paper-section">
-                    <h4>🛠️ Technologies Used</h4>
-                    <ul>
-                        <li><strong>Speech-to-Text (STT):</strong> For accurate voice input processing</li>
-                        <li><strong>Natural Language Processing (NLP):</strong> For intent recognition and context understanding</li>
-                        <li><strong>Text-to-Speech (TTS):</strong> For voice responses in local languages</li>
-                        <li><strong>JavaScript/React:</strong> For responsive web interface</li>
-                        <li><strong>Banking API Integration:</strong> For secure transactions</li>
-                        <li><strong>OTP Authentication:</strong> For secure verification</li>
-                    </ul>
-                </div>
-
-                <div class="paper-section">
-                    <h4>🔄 System Workflow</h4>
-                    <ol>
-                        <li>User logs into banking portal</li>
-                        <li>Voice assistant listens for commands</li>
-                        <li>System processes speech and identifies intent</li>
-                        <li>User confirms transaction details</li>
-                        <li>OTP verification for security</li>
-                        <li>Payment processed and receipt generated</li>
-                        <li>Voice confirmation of successful transaction</li>
-                    </ol>
-                </div>
-
-                <div class="paper-section">
-                    <h4>💫 Impact</h4>
-                    <ul>
-                        <li>Improves financial inclusion for underserved populations</li>
-                        <li>Eliminates literacy barriers in digital banking</li>
-                        <li>Makes banking accessible to elderly and visually impaired users</li>
-                        <li>Published research paper documenting methodology and results</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- QR Code Research Section (NEW) -->
-            <div class="research-paper" style="margin-top: 40px;">
-                <h3>QR Code Generator - PWA Research</h3>
+                <!-- Email -->
+                <a href="mailto:ayushraj1567890@gmail.com" class="contact-item" style="text-decoration: none; display: flex; align-items: center; gap: 1.5rem; background: var(--card-bg); padding: 1.5rem 2rem; border-radius: 15px; transition: all 0.3s ease; border: 1px solid var(--border-color); cursor: pointer; box-shadow: var(--shadow);">
+                    <i class="fas fa-envelope" style="font-size: 1.8rem; color: var(--primary-color); width: 40px;"></i>
+                    <div style="flex: 1;">
+                        <h3 style="color: var(--text-primary); margin-bottom: 0.3rem; font-size: 1.1rem;">Email</h3>
+                        <p style="color: var(--text-secondary); margin: 0;">ayushraj1567890@gmail.com</p>
+                    </div>
+                    <i class="fas fa-arrow-right" style="color: var(--primary-color); opacity: 0.6;"></i>
+                </a>
                 
-                <div class="paper-section" style="display: flex; gap: 30px; align-items: center;">
-                    <div style="flex: 1; text-align: center;">
-                        <img src="images/qr-code-2.jpeg" alt="QR Code Generator PWA" style="width: 150px; border-radius: 10px;">
-                        <p><strong>📱 Scan to explore</strong></p>
+                <!-- LinkedIn -->
+                <a href="https://linkedin.com/in/ayush-raj-478294323" target="_blank" class="contact-item" style="text-decoration: none; display: flex; align-items: center; gap: 1.5rem; background: var(--card-bg); padding: 1.5rem 2rem; border-radius: 15px; transition: all 0.3s ease; border: 1px solid var(--border-color); cursor: pointer; box-shadow: var(--shadow);">
+                    <i class="fab fa-linkedin" style="font-size: 1.8rem; color: var(--primary-color); width: 40px;"></i>
+                    <div style="flex: 1;">
+                        <h3 style="color: var(--text-primary); margin-bottom: 0.3rem; font-size: 1.1rem;">LinkedIn</h3>
+                        <p style="color: var(--text-secondary); margin: 0;">/in/ayush-raj-478294323</p>
                     </div>
-                    <div style="flex: 2;">
-                        <h4>📱 Progressive Web App Development</h4>
-                        <p>A research project on building installable web applications using PWA technology. The QR Code Generator demonstrates how web apps can provide native app-like experiences with offline support and home screen installation.</p>
-                        
-                        <h4>🔬 Key Research Areas</h4>
-                        <ul>
-                            <li>Service Workers for offline functionality</li>
-                            <li>Web App Manifest configuration</li>
-                            <li>PWA to Android App conversion using Bubblewrap</li>
-                            <li>Google Play Store deployment process</li>
-                        </ul>
-                        
-                        <div class="project-links">
-                            <a href="https://github.com/ayushraj09-ai/qr-code-generator" class="btn-small" target="_blank"><i class="fab fa-github"></i> View Code</a>
-                            <a href="https://qr-code-generator-ayush-raj.onrender.com" class="btn-small" target="_blank"><i class="fas fa-external-link-alt"></i> Live App</a>
-                        </div>
+                    <i class="fas fa-arrow-right" style="color: var(--primary-color); opacity: 0.6;"></i>
+                </a>
+                
+                <!-- GitHub -->
+                <a href="https://github.com/ayushraj09-ai" target="_blank" class="contact-item" style="text-decoration: none; display: flex; align-items: center; gap: 1.5rem; background: var(--card-bg); padding: 1.5rem 2rem; border-radius: 15px; transition: all 0.3s ease; border: 1px solid var(--border-color); cursor: pointer; box-shadow: var(--shadow);">
+                    <i class="fab fa-github" style="font-size: 1.8rem; color: var(--primary-color); width: 40px;"></i>
+                    <div style="flex: 1;">
+                        <h3 style="color: var(--text-primary); margin-bottom: 0.3rem; font-size: 1.1rem;">GitHub</h3>
+                        <p style="color: var(--text-secondary); margin: 0;">/ayushraj09-ai</p>
                     </div>
-                </div>
+                    <i class="fas fa-arrow-right" style="color: var(--primary-color); opacity: 0.6;"></i>
+                </a>
+                
+                <!-- Phone -->
+                <a href="tel:+919142968639" class="contact-item" style="text-decoration: none; display: flex; align-items: center; gap: 1.5rem; background: var(--card-bg); padding: 1.5rem 2rem; border-radius: 15px; transition: all 0.3s ease; border: 1px solid var(--border-color); cursor: pointer; box-shadow: var(--shadow);">
+                    <i class="fas fa-phone" style="font-size: 1.8rem; color: var(--primary-color); width: 40px;"></i>
+                    <div style="flex: 1;">
+                        <h3 style="color: var(--text-primary); margin-bottom: 0.3rem; font-size: 1.1rem;">Phone</h3>
+                        <p style="color: var(--text-secondary); margin: 0;">+91 9142968639</p>
+                    </div>
+                    <i class="fas fa-arrow-right" style="color: var(--primary-color); opacity: 0.6;"></i>
+                </a>
+                
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In <span>Touch</span></h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h3>Email</h3>
-                            <p><a href="mailto:ayushraj1567890@gmail.com">ayushraj1567890@gmail.com</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-linkedin"></i>
-                        <div>
-                            <h3>LinkedIn</h3>
-                            <p><a href="https://linkedin.com/in/ayush-raj-478294323" target="_blank">/in/ayush-raj-478294323</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-github"></i>
-                        <div>
-                            <h3>GitHub</h3>
-                            <p><a href="https://github.com/ayushraj09-ai" target="_blank">/ayushraj09-ai</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h3>Phone</h3>
-                            <p><a href="tel:+919142968639">+91 9142968639</a></p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="text" placeholder="Subject">
-                        <textarea rows="5" placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 Ayush Raj. All rights reserved. powered by google</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-medium"></i></a>
-            </div>
+            <p>&copy; 2030 Ayush Raj | AI-Powered Portfolio</p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="js/script.js"></script>
+    <script>
+        function createParticles() {
+            const particleField = document.getElementById('particleField');
+            for (let i = 0; i < 60; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('ai-particle');
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = Math.random() * 10 + 5 + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particleField.appendChild(particle);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            if (typeof Typed !== 'undefined') {
+                new Typed('.typed', {
+                    strings: ['Software Development', 'Artificial Intelligence', 'Full Stack Development', 'Problem Solving', 'Voice Technologies', 'FinTech Solutions', 'DSA & System Design'],
+                    typeSpeed: 50,
+                    backSpeed: 30,
+                    backDelay: 2000,
+                    loop: true
+                });
+            }
+            
+            const themeToggle = document.getElementById('themeToggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            });
+            
+            const aiLoader = document.getElementById('aiLoader');
+            if (aiLoader) {
+                aiLoader.addEventListener('click', () => {
+                    const msg = document.createElement('div');
+                    msg.textContent = '🤖 AI Assistant: All systems operational!';
+                    msg.style.cssText = `position:fixed; bottom:100px; left:30px; background:rgba(0,0,0,0.8); color:#00d4ff; padding:8px 16px; border-radius:20px; font-size:12px; z-index:1001; animation:fadeOut 2s forwards;`;
+                    document.body.appendChild(msg);
+                    setTimeout(() => msg.remove(), 2000);
+                });
+            }
+            
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (hamburger) hamburger.classList.remove('active');
+                    if (navMenu) navMenu.classList.remove('active');
+                });
+            });
+            
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-menu a');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    const href = item.getAttribute('href');
+                    if (href && href.slice(1) === current) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href !== '#' && href !== '#0') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+            
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    alert('Thank you for your message! I will get back to you soon.');
+                    contactForm.reset();
+                });
+            }
+            
+            const revealElements = document.querySelectorAll('.info-card, .skill-category, .project-card, .coding-card');
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const revealPoint = 150;
+                revealElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - revealPoint) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            revealElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(50px)';
+                element.style.transition = 'all 0.6s ease';
+            });
+            window.addEventListener('scroll', revealOnScroll);
+            window.addEventListener('load', revealOnScroll);
+        });
+    </script>
 </body>
 </html>
+```
