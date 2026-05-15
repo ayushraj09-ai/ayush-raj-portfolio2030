@@ -163,14 +163,3 @@ ayush-raj-portfolio/
 
 ---
 
-## 🚀 **Quick Start (Local Development)**
-
-```bash
-# Clone the repository
-git clone https://github.com/ayushraj09-ai/ayush-raj-portfolio.git
-
-# Navigate to project directory
-cd ayush-raj-portfolio
-
-# Open index.html in your browser
-# Or use Live Server (VS Code extension)
